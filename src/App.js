@@ -14,7 +14,7 @@ function App({ fetchingDogsList, fetchImageDog, dogList, dogImg }) {
   return (
     <React.Fragment>
       <h1 style={style}>Dog App</h1>
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div style={{ display: "flex", justifyContent: "space-evenly", flexWrap: 'wrap' }}>
         <div>
           <h3 style={style}>Choose a Dog</h3>
           <SelectComponent dogList={dogList} />
