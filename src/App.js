@@ -1,31 +1,19 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 
-import SelectComponent from "./components/Select";
-import DogCard from "./components/Image";
-import RandomButton from './components/RandomButton';
+import DogPage from "./components/containers/DogPage";
+import LoginPage from "./components/containers/LoginPage";
 
-function App({ fetchingDogsList, fetchImageDog, dogList, dogImg }) {
+import { HashRouter as Router, Route } from "react-router-dom";
 
-  useEffect(() => {
-    fetchingDogsList();
-  }, []);
 
+export default function App() {
   return (
     <React.Fragment>
-      <h1 style={style}>Dog App</h1>
-      <div style={{ display: "flex", justifyContent: "space-evenly", flexWrap: 'wrap' }}>
-        <div>
-          <h3 style={style}>Choose a Dog</h3>
-          <SelectComponent dogList={dogList} />
-          <DogCard status={'choose'}/>
-        </div>
-        <div>
-          <h3 style={style}>Random Dog</h3>
-          <RandomButton/>
-          <DogCard status={'random'}/>
-        </div>
-      </div>
+      <Router>
+        <h1 style={style}>Dog App</h1>
+        <Route exact path="/" component={LoginPage} />
+        <Route path="/dog" component={DogPage} />
+      </Router>
     </React.Fragment>
   );
 }
@@ -35,20 +23,3 @@ const style = {
   fontFamily: "cursive",
   color: "#f50057"
 };
-
-
-const mapStateToProps = state => {
-  return {
-    dogList: state.allDogs,
-    dogImg: state.dogImg
-  };
-};
-
-const MapDispatchToProps = dispatch => {
-  return {
-    fetchingDogsList: () => dispatch({ type: "FETCHING_DATA" }),
-    fetchImageDog: () => dispatch({ type: "FETCHING_DATA_IMAGE" })
-  };
-};
-
-export default connect(mapStateToProps, MapDispatchToProps)(App);

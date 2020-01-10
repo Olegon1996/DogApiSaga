@@ -5,4 +5,9 @@ const getDogBreed = breed => ({
   payload: breed
 });
 
-export { getDogBreed };
+const getUserName = name => ({
+  type: "GET_NAME_BREED",
+  payload: name
+})
+
+export { getDogBreed, getUserName };

@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeEvery, call, put, take } from "redux-saga/effects";
 
 import { getAllDogsBreed, getDogBreed, getRandom } from "../DogApiServices";
 
@@ -37,8 +37,23 @@ function* getRandomDog() {
   }
 };
 
+
+
+function* authorization() {
+  
+}
+
+
+
+
+
+
+
+
+
 export default function* watcherSaga() {
   yield takeEvery("FETCHING_DATA", getDogsList);
   yield takeEvery("FETCHING_DATA_IMAGE", getOneDog);
   yield takeEvery("FETCHING_DATA_RANDOM", getRandomDog);
+  yield take("LOGIN_REQUEST", authorization);
 };
